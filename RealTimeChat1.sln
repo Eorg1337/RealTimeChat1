@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeChat1", "RealTimeChat1\RealTimeChat1.csproj", "{52B365DE-9AF8-4ECE-B06D-5CF8DCFB09DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52B365DE-9AF8-4ECE-B06D-5CF8DCFB09DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B365DE-9AF8-4ECE-B06D-5CF8DCFB09DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52B365DE-9AF8-4ECE-B06D-5CF8DCFB09DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52B365DE-9AF8-4ECE-B06D-5CF8DCFB09DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CE74D7A-B16E-4260-A87F-8363A4C93AFA}
+	EndGlobalSection
+EndGlobal
