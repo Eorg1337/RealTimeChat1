@@ -1,0 +1,19 @@
+﻿@foreach (var user in UserList)
+{
+		<ul>
+			<li>@user</li>
+		</ul>
+}
+
+<style>
+	li{
+		list-style:none;
+	}
+</style>
+
+
+@code {
+
+	[Parameter] public List<UserDisplayUnit> UserList { get; set; } = new List<UserDisplayUnit>();
+
+}
