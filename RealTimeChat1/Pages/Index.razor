@@ -1,7 +1,9 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.SignalR.Client;
 @inject NavigationManager NavigationManager
-<!doctype html>
+
+<ChatPage/>
+@*<!doctype html>
 <html lang="ru">
 <head>
     <!-- Обязательные метатеги -->
@@ -157,3 +159,4 @@
     async Task Send()
         => await hubConnection.SendAsync("SendMessage", userNameInput, messageInput);
 }
+*@
