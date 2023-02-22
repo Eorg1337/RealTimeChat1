@@ -1,20 +1,34 @@
-﻿<!--Компонент контейнера сообщений-->
-<div class="position-relative">
-	<div class="chat-messages p-4">
+﻿@using Microsoft.AspNetCore.SignalR.Client;
+@inject NavigationManager NavigationManager
 
-		<div class="chat-message-right pb-4">
+<div class="position-relative">
+
+	<!--Компонент контейнера сообщений-->
+	<div class="position-relative">
+		<div class="chat-messages p-4">
+
 			<ul>
-				@* @foreach (string text in messages)
+
+				@foreach (string text in messages)
 				{
-				<li>@text</li>
-				}*@
+					<!--Компонент отправленного сообщения-->
+					<MessageRight Message="@text" />
+				}
+
+
+				@foreach (string text in messages)
+				{
+					<!--Компонент полученного сообщения-->
+					<MessageLeft Message="@text" />
+				}
+
 			</ul>
 		</div>
+
 	</div>
 </div>
 
 @code {
-
 	[Parameter] public string Message { get; set; } = "text;";
 
 }
