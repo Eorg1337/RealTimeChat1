@@ -1,18 +1,50 @@
-﻿<!--Компонент контейнера сообщений-->
-<div class="position-relative">
-	<div class="chat-messages p-4">
+﻿@using Microsoft.AspNetCore.SignalR.Client;
+@inject NavigationManager NavigationManager
 
-		<div class="chat-message-right pb-4">
+
+@*<MessageInputField OnClickCallback="@AddNewMessage" />
+<div class="position-relative">
+	<!--Компонент контейнера сообщений-->
+	<div class="position-relative">
+		<div class="chat-messages p-4">
+
 			<ul>
-				@* @foreach (string text in messages)
+
+				@foreach (string message in messages)
 				{
-				<li>@text</li>
-				}*@
+					<!--Компонент отправленного сообщения-->
+					<MessageRight Message="@message" />
+				}
+
+
+				@foreach (string message in messages)
+				{
+					<!--Компонент полученного сообщения-->
+					<MessageLeft Message="@message" />
+				}
+
 			</ul>
 		</div>
+
 	</div>
-</div>
+</div>*@
 
 @code {
+	//private List<string> messages = new List<string>();
+
+	//private void AddNewMessage(string message)
+	//{
+	//	messages.Add(message);
+	//}
+	[Parameter]
+	public EventCallback<string> OnClickCallback { get; set; }
+
+	void OnClick()
+	{
+		OnClickCallback.InvokeAsync(messageInput);
+	}
+
+
+
 
 }
