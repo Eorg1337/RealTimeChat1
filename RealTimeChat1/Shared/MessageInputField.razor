@@ -4,8 +4,8 @@
 <!--Компонент поля ввода сообщения-->
 <div class="flex-grow-0 py-3 px-4 border-top">
 	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Введите сообщение" @bind="messageInput" />
-		<button class="btn btn-primary" @onclick="Send">Send</button>
+		<input type="text" class="form-control" placeholder="Введите сообщение" @bind="@messageInput" />
+		<button class="btn btn-primary" @onclick="@OnClick">Send</button>
 	</div>
 </div>
 
@@ -16,8 +16,16 @@
 	private string userNameInput;
 	private string messageInput;
 
-	async Task Send()
+	//async Task Send()
+	//{
+	//	//событие которое слушает MessageController. Происходит Send, MC забирает данные userNameInput, messageInput
+	//}
+	[Parameter]
+	public EventCallback<string> OnClickCallback { get; set; }
+
+	void OnClick()
 	{
-		//событие которое слушает MessageController. Происходит Send, MC забирает данные userNameInput, messageInput
+		OnClickCallback.InvokeAsync(messageInput);
 	}
+
 }

@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.SignalR.Client;
 @inject NavigationManager NavigationManager
 
+<MessageController OnReceiveMessageCallback="@GetMessageList" />
+
 <div class="position-relative">
 
 	<!--Компонент контейнера сообщений-->
@@ -8,18 +10,19 @@
 		<div class="chat-messages p-4">
 
 			<ul>
-
-				@foreach (string text in messages)
+				<!--Тут отображаем список сообщений-->
+				@foreach (var message in MessageList)
 				{
-					<!--Компонент отправленного сообщения-->
-					<MessageRight Message="@text" />
+					<ul>
+						<li><MessageLeft Message="@message"/></li>
+					</ul>
 				}
 
-
-				@foreach (string text in messages)
+				@foreach (var message in MessageList)
 				{
-					<!--Компонент полученного сообщения-->
-					<MessageLeft Message="@text" />
+					<ul>
+						<li><MessageRight Message="@message" /></li>
+					</ul>
 				}
 
 			</ul>
@@ -28,7 +31,13 @@
 	</div>
 </div>
 
-@code {
-	[Parameter] public string Message { get; set; } = "text;";
 
+
+@code {
+	[Parameter] public List<Message> MessageList { get; set; }
+
+	private void GetMessageList(List<Message> _MessageList)
+	{
+		MessageList = _MessageList;
+	}
 }
