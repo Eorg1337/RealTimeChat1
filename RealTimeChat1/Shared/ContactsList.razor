@@ -15,5 +15,13 @@
 @code {
 
 	[Parameter] public List<UserDisplayUnit> UserList { get; set; } = new List<UserDisplayUnit>();
+	static void Found(string[] args)
+	{
+		List<UserDisplayUnit> UserList = new List<UserDisplayUnit>();
+		UserList.Add(new UserDisplayUnit() { UserName = "Afonya" });
+		UserList.Add(new UserDisplayUnit() { UserName = "Dmitriy" });
+	}
+
+
 
 }
