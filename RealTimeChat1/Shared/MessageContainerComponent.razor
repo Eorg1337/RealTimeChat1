@@ -34,7 +34,22 @@
 
 
 @code {
-	[Parameter] public List<Message> MessageList { get; set; }
+
+	public static User User { get; set; } = new User(userName: "Default");
+
+	[Parameter]
+	public List<Message> MessageList { get; set; } = new List<Message>()
+	{
+		new Message( User, "12:34","Bye")
+		{
+			
+		},
+		new Message(User, "20:00","Bye")
+		{
+
+		},
+	};
+	
 
 	private void GetMessageList(List<Message> _MessageList)
 	{

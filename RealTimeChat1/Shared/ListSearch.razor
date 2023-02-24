@@ -2,11 +2,20 @@
 <div class="px-4 d-none d-md-block">
 	<div class="d-flex align-items-center">
 		<div class="flex-grow-1">
-			<input type="text" class="form-control my-3" placeholder="Search...">
+			<input type="text" class="form-control my-3" placeholder="Search..."  />
+			<ContactsList UserList="@FoundedUsers" />
 		</div>
 	</div>
 </div>
 
 @code {
+	[Parameter] public List<User> UserList { get; set; } = new List<User>();
 
+	public string enteredText;
+	public List<User> FoundedUsers { get; set; } = new List<User>();
+	public void Find()
+	{
+		var user = UserList.Find(item => item.UserName == enteredText);
+		FoundedUsers.Add(user);
+	}
 }

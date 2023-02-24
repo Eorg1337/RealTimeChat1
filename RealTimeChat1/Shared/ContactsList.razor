@@ -1,8 +1,6 @@
 ﻿@foreach (var user in UserList)
 {
-		<ul>
-			<li>@user</li>
-		</ul>
+			<li> <UserDisplayUnit User="user" /></li>
 }
 
 <style>
@@ -14,6 +12,12 @@
 
 @code {
 
-	[Parameter] public List<UserDisplayUnit> UserList { get; set; } = new List<UserDisplayUnit>();
+	[Parameter]
+	public List<User> UserList { get; set; } = new List<User>()
+	{
+		new User(){}, 
+		new User( userName:"Igor"){},
+		new User(userName:"Egor"){}
+	};
 
 }

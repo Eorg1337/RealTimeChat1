@@ -54,7 +54,7 @@ namespace RealTimeChat1
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();
-                endpoints.MapHub<ChatHub>("/chat");
+                endpoints.MapHub<WebHub>("/chat");
                 endpoints.MapFallbackToPage("/_Host");
             });
         }

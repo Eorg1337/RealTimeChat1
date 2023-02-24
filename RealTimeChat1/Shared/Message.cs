@@ -2,15 +2,15 @@
 {
 	public class Message
 	{
-		public string UserImage { get; set; }
-		public string UserName { get; set; }
-		public string MessageText { get; set; }
-		public string SendTime { get; set; }
+		public User User { get; }	
+		public string UserImage { get { return User.UserImage; } } 
+		public string UserName { get { return User.UserName; } }
+		public string MessageText { get; set; } = "Text";
+		public string SendTime { get; set; } = " ";
 
-		public Message(string userImage, string userName, string messageText, string sendTime)
+		public Message(User user, string messageText, string sendTime)
 		{
-			UserImage = userImage;
-			UserName = userName;
+			User = user;	
 			MessageText = messageText;
 			SendTime = sendTime;	
 		}

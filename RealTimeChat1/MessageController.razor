@@ -16,12 +16,12 @@
 	[Parameter]
 	public EventCallback<List<Message>> OnReceiveMessageCallback { get; set; }
 
-	MessageController messageController = new MessageController();
+	//MessageController messageController = new MessageController();
 
-	public void OnRecive()//ПЕРЕДАЕМ КОНТЕЙНЕРУ СПИСОК СООБЩЕНИЙ
-	{
-		OnReceiveMessageCallback.InvokeAsync(messages);
-	}
+	//public void OnRecive()//ПЕРЕДАЕМ КОНТЕЙНЕРУ СПИСОК СООБЩЕНИЙ
+	//{
+	//	OnReceiveMessageCallback.InvokeAsync(messages);
+	//}
 
 
 
@@ -32,10 +32,10 @@
 		hubConnection = new HubConnectionBuilder().WithUrl(NavigationManager.ToAbsoluteUri("/chat")).Build();
 		hubConnection.On<Message>("ReceiveMessage", (_message) =>
 		{
-			messages.Add(new Message(_message.UserImage, _message.UserName, _message.MessageText, _message.SendTime));
+			messages.Add(new Message(_message.User, _message.MessageText, _message.SendTime));
 
 			StateHasChanged();
-			messageController.OnRecive();
+			//messageController.OnRecive();
 		});
 		await hubConnection.StartAsync();
 	}
