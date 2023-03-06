@@ -2,6 +2,7 @@
 @inject NavigationManager NavigationManager
 
 <MessageController OnReceiveMessageCallback="@GetMessageList" />
+<ListSearch OnClickCallBack="@GetUser"/>
 
 <div class="position-relative">
 
@@ -36,6 +37,18 @@
 @code {
 
 	public static User User { get; set; } = new User(userName: "Default");
+
+	[Parameter]
+	public User UserOpponent{ get; set; }
+
+	private void GetUser(User _userOpponent)
+	{
+		User = _userOpponent;
+
+		Console.WriteLine(_userOpponent.UserName);
+	}
+
+	
 
 	[Parameter]
 	public List<Message> MessageList { get; set; } = new List<Message>()

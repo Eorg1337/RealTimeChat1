@@ -9,6 +9,22 @@
 </div>
 
 @code {
+
+	User userOpponent = new User();
+
+	[Parameter]
+	public  EventCallback<User> OnClickCallBack { get; set; }
+
+	private void OnClick()
+	{
+		OnClickCallBack.InvokeAsync(userOpponent);
+		Console.WriteLine(userOpponent.UserName);
+	}
+
+
+
+
+
 	[Parameter] public List<User> UserList { get; set; } = new List<User>();
 
 	public string enteredText;
