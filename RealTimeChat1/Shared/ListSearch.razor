@@ -21,11 +21,16 @@
 	string enteredText { get; set; } = "";
 	//public List<User> FoundedUsers { get; set; } = new List<User>();
 	public List<User> FoundedUsers => UserList.Where(x => x.UserName.ToLower().Contains(enteredText.ToLower())).ToList();
-	public void Find()
+
+	User userOpponent = new User();
+
+	[Parameter]
+	public  EventCallback<User> OnClickCallBack { get; set; }
+
+	private void OnClick()
 	{
-		//UserList = UserList.Where(x => x.UserName.ToLower().Contains(enteredText.ToLower())).ToList();
-		//FoundedUsers = UserList.Where(x => x.UserName.ToLower().Contains(enteredText.ToLower())).ToList();
-		//var user = UserList.Find(item => item.UserName == enteredText);
-		//FoundedUsers.Add(user);
+		OnClickCallBack.InvokeAsync(userOpponent);
+		Console.WriteLine(userOpponent.UserName);
 	}
+
 }
