@@ -1,4 +1,5 @@
-﻿namespace RealTimeChat1.Shared
+﻿
+namespace RealTimeChat1.Shared
 {
 	public class Message
 	{

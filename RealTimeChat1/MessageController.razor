@@ -8,8 +8,8 @@
 @code {
 	// messageContainer решает проблему с контекстом работы хаба
 	private HubConnection hubConnection;
-	private string userNameInput; // добавить логику работы с UserName
-	private string messageInput;
+	public string userNameInput="Igor"; // добавить логику работы с UserName
+	public string messageInput =" s";
 
 
 	// логика получения сообщений//////////////////////////////////////////////////////////////////////////////////////////
@@ -25,14 +25,29 @@
 
 
 
-	private List<Message> messages = new List<Message>();
+	//private List<Message> messages = new List<Message>();
+	private List<string> messages = new List<string>();
+
+
+
+
+	//логика отправки сообщения на сервер///////////////////////////////////////////////////////////////////////////////////////////
+	private void GetMessageInput( string _message)
+	{
+		messageInput = _message;//текст передается успешно
+	}
+
+	// добавить логику отображения собственных сообщений
+	async Task Send()
+	=> await hubConnection.SendAsync("SendMessage", userNameInput, messageInput);
+
 
 	protected override async Task OnInitializedAsync()
 	{
 		hubConnection = new HubConnectionBuilder().WithUrl(NavigationManager.ToAbsoluteUri("/chat")).Build();
-		hubConnection.On<Message>("ReceiveMessage", (_message) =>
+		hubConnection.On<string, string>("ReceiveMessage", (userNameInput,messageInput) =>
 		{
-			messages.Add(new Message(_message.User, _message.MessageText, _message.SendTime));
+			messages.Add($"{userNameInput}: {messageInput}");
 
 			StateHasChanged();
 			//messageController.OnRecive();
@@ -40,23 +55,18 @@
 		await hubConnection.StartAsync();
 	}
 
+	//protected override async Task OnInitializedAsync()
+	//{
+	//	hubConnection = new HubConnectionBuilder().WithUrl(NavigationManager.ToAbsoluteUri("/chat")).Build();
+	//	hubConnection.On<Message>("ReceiveMessage", (_message) =>
+	//	{
+	//		messages.Add(new Message(_message.User, _message.MessageText, _message.SendTime));
 
-
-	
-
-
-
-
-
-	//логика отправки сообщения на сервер///////////////////////////////////////////////////////////////////////////////////////////
-	private void GetMessageInput(string _messageInput)
-	{
-		messageInput = _messageInput;
-	}
-
-	// добавить логику отображения собственных сообщений
-	async Task Send()
-	=> await hubConnection.SendAsync("SendMessage", userNameInput, messageInput);
+	//		StateHasChanged();
+	//		//messageController.OnRecive();
+	//	});
+	//	await hubConnection.StartAsync();
+	//}
 
 }
 
