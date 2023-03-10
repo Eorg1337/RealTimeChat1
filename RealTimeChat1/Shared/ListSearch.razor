@@ -2,20 +2,30 @@
 <div class="px-4 d-none d-md-block">
 	<div class="d-flex align-items-center">
 		<div class="flex-grow-1">
-			<input type="text" class="form-control my-3" placeholder="Search..."  />
+			<input type="text" class="form-control my-3" placeholder="Search..." @bind = "enteredText" @bind:event ="oninput" />
+			<span class="text-muted ml-5">
+				Showing @FoundedUsers.Count out of @UserList.Count
+			</span>
 			<ContactsList UserList="@FoundedUsers" />
 		</div>
 	</div>
 </div>
 
 @code {
-	[Parameter] public List<User> UserList { get; set; } = new List<User>();
-
-	public string enteredText;
-	public List<User> FoundedUsers { get; set; } = new List<User>();
+	[Parameter] public List<User> UserList { get; set; } = new List<User>()
+	{
+		new User(){},
+		new User( userName:"Igor"){},
+		new User(userName:"Egor"){}
+	};
+	string enteredText { get; set; } = "";
+	//public List<User> FoundedUsers { get; set; } = new List<User>();
+	public List<User> FoundedUsers => UserList.Where(x => x.UserName.ToLower().Contains(enteredText.ToLower())).ToList();
 	public void Find()
 	{
-		var user = UserList.Find(item => item.UserName == enteredText);
-		FoundedUsers.Add(user);
+		//UserList = UserList.Where(x => x.UserName.ToLower().Contains(enteredText.ToLower())).ToList();
+		//FoundedUsers = UserList.Where(x => x.UserName.ToLower().Contains(enteredText.ToLower())).ToList();
+		//var user = UserList.Find(item => item.UserName == enteredText);
+		//FoundedUsers.Add(user);
 	}
 }

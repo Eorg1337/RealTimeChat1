@@ -6,7 +6,7 @@
 		public string UserImage { get { return User.UserImage; } } 
 		public string UserName { get { return User.UserName; } }
 		public string MessageText { get; set; } = "Text";
-		public string SendTime { get; set; } = " ";
+		public string SendTime { get; set; } = "Time";
 
 		public Message(User user, string messageText, string sendTime)
 		{
