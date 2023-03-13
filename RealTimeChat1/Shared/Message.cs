@@ -7,7 +7,7 @@ namespace RealTimeChat1.Shared
 		public string UserImage { get { return User.UserImage; } } 
 		public string UserName { get { return User.UserName; } }
 		public string MessageText { get; set; } = "Text";
-		public string SendTime { get; set; } = " ";
+		public string SendTime { get; set; } = "4:20";
 
 		public Message(User user, string messageText, string sendTime)
 		{

@@ -16,13 +16,22 @@
 
 </head>
 <body>
-	<main class="content">
+	Theme(c)
+	<select @onchange="ChangingTheme" style="margin: 1rem ">
+		@foreach (var theme in themes)
+		{
+			<option selected="@IsSelectedTheme(theme)" value="@theme">@theme</option>
+		}
+		
+	</select>
+
+	<main class="content @GetCssClass()">
 		<div class="container p-0">
 
 
 			<h1 class="h3 mb-3">Messenger-PegionMail</h1>
 
-			<div class="card">
+			<div class="card @GetCssClass()">
 				<div class="row g-0">
 
 					<!--Компонент SideMenu-->
@@ -95,11 +104,41 @@
 		.border-top {
 			border-top: 1px solid #dee2e6 !important;
 		}
+
+		.dark-mode {
+			background: #2d2d2d;
+			color: grey;
+			highlight: #393939;
+			highlight-2: #414648;
+			link: #3ca4ff;
+		}
 	</style>
 </body>
 </html>
 
 
 @code {
+	private static string selectedTheme = "Light";
+	private List<string> themes = new List<string> { "Light", "Dark" };
+	public static string GetCssClass()
+	{
+		if (selectedTheme == "Light")
+		{
+			return string.Empty;
+		}
+		else
+		{
+			return "dark-mode";
+		}
+	}
 
+	private bool IsSelectedTheme(string theme)
+	{
+		return theme == selectedTheme;
+	}
+
+	private void ChangingTheme(ChangeEventArgs e)
+	{
+		selectedTheme = e.Value.ToString();
+	}
 }
