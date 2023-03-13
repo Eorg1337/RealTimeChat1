@@ -15,5 +15,17 @@ namespace RealTimeChat1.Shared
 			MessageText = messageText;
 			SendTime = sendTime;	
 		}
+
+		public Message(string messageText, string sendTime)
+		{
+			User = new User();
+			MessageText = messageText;
+			SendTime = sendTime;
+		}
+
+		public Message()
+		{
+			User = new User();
+		}
 	}
 }

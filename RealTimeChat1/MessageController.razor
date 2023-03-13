@@ -8,70 +8,45 @@
 @code {
 	// messageContainer решает проблему с контекстом работы хаба
 	private HubConnection hubConnection;
-	public string userNameInput="Igor"; // добавить логику работы с UserName
-	public string messageInput =" s";
-	public Message inputMessage;
+	public Message inputMessage = new Message();
 
 
 	// логика получения сообщений//////////////////////////////////////////////////////////////////////////////////////////
 	[Parameter]
 	public EventCallback<List<Message>> OnReceiveMessageCallback { get; set; }
 
-	//MessageController messageController = new MessageController();
-
-	//public void OnRecive()//ПЕРЕДАЕМ КОНТЕЙНЕРУ СПИСОК СООБЩЕНИЙ
-	//{
-	//	OnReceiveMessageCallback.InvokeAsync(messages);
-	//}
-
-
-
 	private List<Message> messages = new List<Message>();
-
-
 
 
 	//логика отправки сообщения на сервер///////////////////////////////////////////////////////////////////////////////////////////
 	private void GetMessageInput( string _message)
 	{
-		messageInput = _message;//текст передается успешно
+		inputMessage.MessageText = _message;//текст передается успешно
+		InvokeAsync(Send);
 	}
-
-
-
-	
-
-
-	//protected override async Task OnInitializedAsync()
-	//{
-	//	hubConnection = new HubConnectionBuilder().WithUrl(NavigationManager.ToAbsoluteUri("/chat")).Build();
-	//	hubConnection.On<string, string>("ReceiveMessage", (userNameInput,messageInput) =>
-	//	{
-	//		messages.Add($"{userNameInput}: {messageInput}");
-	//		StateHasChanged();
-	//		//messageController.OnRecive();
-	//	});
-	//	await hubConnection.StartAsync();
-	//}
-
 
 	// добавить логику отображения собственных сообщений
 	async Task Send()
-	=> await hubConnection.SendAsync("SendMessage", userNameInput, messageInput);
+	=> await hubConnection.SendAsync("SendMessage", inputMessage);
 
 
 	protected override async Task OnInitializedAsync()
 	{
 		hubConnection = new HubConnectionBuilder().WithUrl(NavigationManager.ToAbsoluteUri("/chat")).Build();
-		hubConnection.On<Message>("ReceiveMessage", (_message) =>
+		hubConnection.On<Message>("ReceiveMessage", (inputMessage) =>
 		{
-			messages.Add(new Message(_message.User, _message.MessageText, _message.SendTime));
-
-			StateHasChanged();
-			//messageController.OnRecive();
+			messages.Add(new Message(inputMessage.User, inputMessage.MessageText, inputMessage.SendTime));
+			//StateHasChanged();
+			InvokeAsync(OnReceive);
+			
 		});
 		await hubConnection.StartAsync();
 	}
 
+
+	void OnReceive()
+	{
+		OnReceiveMessageCallback.InvokeAsync(messages);
+	}
 }
 
