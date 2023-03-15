@@ -2,7 +2,7 @@
 {
 	public class Message
 	{
-		public User User { get; }	
+		public User User { get; set; }	
 		public string UserImage { get { return User.UserImage; } } 
 		public string UserName { get { return User.UserName; } }
 		public string MessageText { get; set; } = "Text";

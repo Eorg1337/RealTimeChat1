@@ -1,16 +1,11 @@
-﻿<a href="#" class="list-group-item list-group-item-action border-0">
+﻿@using RealTimeChat1.Pages
+<a href="#" class="@ChatPage.GetCssClass() list-group-item list-group-item-action border-0">
 	<div class="badge bg-success float-right">5</div>
-	<div class="d-flex align-items-start">
+	<div class="d-flex align-items-start" @onclick="@OnClick">
 		<Avatar avatarImagePath = "@User.UserImage" />
 		<div class="flex-grow-1 ml-3">
 			<strong>@User.UserName</strong>
 			<div class="small"><span class="fas fa-circle chat-online"></span> @User.NetworkStatus</div>
 		</div>
 	</div>
-</a>
-@code {
-
-	[Parameter]
-	public User User { get; set; } = new User(userName: "Default");
-
-}
+ </a>

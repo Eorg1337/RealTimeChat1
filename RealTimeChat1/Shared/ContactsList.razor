@@ -1,18 +1,26 @@
-﻿@foreach (var user in UserList)
+﻿
+@foreach (var user in UserList)
 {
-			<li> <UserDisplayUnit User="user" /></li>
+	<li @onclick="(()=>OnClick(user))"> <UserDisplayUnit User=user /></li>
 }
 
-<style>
+
+<style> 
 	li{
 		list-style:none;
 	}
 </style>
 
-
 @code {
-
 	[Parameter]
 	public List<User> UserList { get; set; } = new List<User>();
+	public  static User selectedUser { get; set; } = new User();
+	[Parameter]
+	public  EventCallback<User> OnClickCallback { get; set; }
 
+	public void OnClick(User user)
+	{
+		selectedUser = user;
+		OnClickCallback.InvokeAsync(selectedUser);
+	}
 }
