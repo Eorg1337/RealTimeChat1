@@ -1,11 +1,11 @@
 ﻿@foreach (var user in UserList)
 {
-			<li> <UserDisplayUnit User="user" /></li>
+	<li @onclick ="(()=>OnClick(user))"> <UserDisplayUnit User="user" /></li>
 }
 
 <style>
 	li{
-		list-style:none;
+	list-style:none;
 	}
 </style>
 
@@ -15,9 +15,16 @@
 	[Parameter]
 	public List<User> UserList { get; set; } = new List<User>()
 	{
-		new User(){}, 
+		new User(){},
 		new User( userName:"Igor"){},
 		new User(userName:"Egor"){}
 	};
 
+	[Parameter]
+	public EventCallback<User> OnClickCallback { get; set; }
+
+	public void OnClick(User user)
+	{
+		OnClickCallback.InvokeAsync(user);
+	}
 }

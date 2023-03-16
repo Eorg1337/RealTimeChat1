@@ -48,19 +48,19 @@
 		Console.WriteLine(_userOpponent.UserName);
 	}
 
-	
+
 
 	[Parameter]
 	public List<Message> MessageList { get; set; } = new List<Message>()
 	{
-		new Message( User, "12:34","Bye")
-		{
-			
-		},
-		new Message(User, "20:00","Bye")
+		new Message( User,"Bye","12:34")
 		{
 
 		},
+		new Message(User, "Hello","11:11")
+		{
+			
+		}
 	};
 	
 

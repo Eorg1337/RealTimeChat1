@@ -18,5 +18,13 @@
 
 @code {
 	[Parameter]
-	public User User { get; set; } = new User(userName: "Default");
+	public UserDisplayUnit unitDisplay { get; set; }
+
+	UserDisplayUnit unit = new UserDisplayUnit();
+
+
+	[Parameter]
+	public User User { get; set; } = new User();
+
+	
 }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RealTimeChat1.Hubs;
+using RealTimeChat1.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace RealTimeChat1
             services.AddServerSideBlazor();
             services.AddResponseCompression(options =>
                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] {"application/octet-stream" }));
+            services.AddSingleton<instanceTransferService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

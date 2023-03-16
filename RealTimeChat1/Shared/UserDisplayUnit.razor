@@ -1,7 +1,7 @@
 ﻿@using RealTimeChat1.Pages
 
 <a href="#" class="@ChatPage.GetCssClass() list-group-item list-group-item-action border-0 ">
-	<div class="badge bg-success float-right">5</div>
+	<RealTimeChat1.Shared.UserView.NumberOfMessagesBadge NumberOfMessages="2"/>
 	<div class="d-flex align-items-start" >
 		<Avatar avatarImagePath = "@User.UserImage" />
 		<div class="flex-grow-1 ml-3">
