@@ -8,24 +8,13 @@
 	<!--Компонент контейнера сообщений-->
 	<div class="position-relative">
 		<div class="chat-messages p-4">
-
-			<ul>
 				<!--Тут отображаем список сообщений-->
 				@foreach (var message in MessageList)
 				{
 					<ul>
-						<li><MessageLeft Message="@message"/></li>
+						<li><MessageLeft Message="@message" /><MessageRight Message="@message" /></li>
 					</ul>
 				}
-
-				@foreach (var message in MessageList)
-				{
-					<ul>
-						<li><MessageRight Message="@message" /></li>
-					</ul>
-				}
-
-			</ul>
 		</div>
 
 	</div>
@@ -53,14 +42,14 @@
 	[Parameter]
 	public List<Message> MessageList { get; set; } = new List<Message>()
 	{
-		new Message( User,"Bye","12:34")
-		{
+		//new Message( User,"Bye","12:34")
+		//{
 
-		},
-		new Message(User, "Hello","11:11")
-		{
+		//},
+		//new Message(User, "Hello","11:11")
+		//{
 			
-		}
+		//}
 	};
 	
 

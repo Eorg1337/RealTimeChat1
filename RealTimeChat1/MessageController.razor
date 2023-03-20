@@ -35,7 +35,7 @@
 		hubConnection = new HubConnectionBuilder().WithUrl(NavigationManager.ToAbsoluteUri("/chat")).Build();
 		hubConnection.On<Message>("ReceiveMessage", (inputMessage) =>
 		{
-			messages.Add(new Message(inputMessage.User, inputMessage.MessageText, inputMessage.SendTime));
+			messages.Add(new Message(inputMessage.User, inputMessage.MessageText));
 			//StateHasChanged();
 			InvokeAsync(OnReceive);
 			
