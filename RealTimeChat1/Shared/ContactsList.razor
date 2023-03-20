@@ -1,5 +1,4 @@
-﻿
-@foreach (var user in UserList)
+﻿@foreach (var user in UserList)
 {
 	<li @onclick="(()=>OnClick(user))"> <UserDisplayUnit User=user /></li>
 }
